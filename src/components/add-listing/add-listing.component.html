@@ -1,0 +1,84 @@
+
+<div class="relative flex h-full min-h-screen w-full flex-col bg-white dark:bg-background-dark shadow-xl overflow-x-hidden">
+  <header class="sticky top-0 z-50 flex items-center bg-white/80 dark:bg-background-dark/80 backdrop-blur-md p-4 border-b border-slate-100 dark:border-slate-800 justify-between">
+    <a [routerLink]="['/home']" class="text-slate-900 dark:text-white flex size-10 items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+      <span class="material-symbols-outlined">arrow_back_ios_new</span>
+    </a>
+    <h1 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-10">Ku dar Xayeysiin</h1>
+  </header>
+  <main class="flex-1 overflow-y-auto pb-32">
+    <section class="p-4">
+      <div class="flex flex-col items-center gap-4 rounded-xl border-2 border-dashed border-primary/30 bg-primary/5 dark:bg-primary/10 px-6 py-10 transition-all hover:border-primary/60">
+        <div class="flex flex-col items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-5xl">add_a_photo</span>
+          <h2 class="text-slate-900 dark:text-white text-lg font-bold">📷 Sawir</h2>
+          <p class="text-slate-500 dark:text-slate-400 text-sm font-normal text-center">Ku dar ilaa 5 sawir oo tayo leh si aad u kordhiso iibkaaga</p>
+        </div>
+        <button class="flex min-w-[140px] cursor-pointer items-center justify-center rounded-xl h-12 px-6 bg-primary text-slate-900 text-sm font-bold tracking-wide active:scale-95 transition-transform">
+            Upload image
+        </button>
+      </div>
+    </section>
+    <div class="space-y-4 px-4 py-2">
+      <div class="flex flex-col gap-2">
+        <label class="flex items-center gap-2 text-slate-900 dark:text-white text-base font-semibold leading-normal">
+          <span class="material-symbols-outlined text-primary text-xl">edit_note</span>
+          ✍️ Sharaxaad
+        </label>
+        <textarea #descriptionTextarea class="form-input flex w-full resize-none rounded-xl text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-2 focus:ring-primary/20 min-h-[140px] placeholder:text-slate-400 p-4 text-base transition-all" placeholder="Faahfaahin ka bixi waxaad iibinayso (Tusaale: Midabka, xaalada, iyo sababta aad u iibinayso)..."></textarea>
+      </div>
+      <div class="flex flex-col gap-2">
+        <label class="flex items-center gap-2 text-slate-900 dark:text-white text-base font-semibold leading-normal">
+          <span class="material-symbols-outlined text-primary text-xl">payments</span>
+          💰 Qiimo
+        </label>
+        <div class="relative flex items-center">
+          <input #priceInput class="form-input w-full rounded-xl text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-2 focus:ring-primary/20 h-14 pl-4 pr-12 text-base font-medium transition-all" placeholder="Gali qiimaha..." type="number"/>
+          <div class="absolute right-4 text-primary font-bold text-lg">$</div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-2">
+        <label class="flex items-center gap-2 text-slate-900 dark:text-white text-base font-semibold leading-normal">
+          <span class="material-symbols-outlined text-primary text-xl">location_on</span>
+          📍 Goob
+        </label>
+        <div class="relative">
+          <select #locationSelect class="form-select w-full rounded-xl text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 focus:border-primary focus:ring-2 focus:ring-primary/20 h-14 px-4 text-base appearance-none transition-all">
+            <option disabled selected value="">Dooro goobta (Magaalada)</option>
+            <option value="muqdisho">Muqdisho</option>
+            <option value="hargeisa">Hargeisa</option>
+            <option value="garowe">Garowe</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-400">
+            <span class="material-symbols-outlined">expand_more</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="px-4 mt-6">
+      <div class="flex flex-col gap-2">
+        <p class="text-slate-900 dark:text-white text-base font-semibold leading-normal">Qaybta Xayeysiiska</p>
+        <div class="grid grid-cols-3 gap-2">
+          <button class="flex flex-col items-center gap-1 p-3 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-primary/50 hover:bg-primary/5 transition-all">
+            <span class="material-symbols-outlined text-slate-600 dark:text-slate-300">home</span>
+            <span class="text-xs font-medium">Guryaha</span>
+          </button>
+          <button class="flex flex-col items-center gap-1 p-3 border border-primary bg-primary/10 rounded-xl">
+            <span class="material-symbols-outlined text-primary">directions_car</span>
+            <span class="text-xs font-bold text-primary">Gawaarida</span>
+          </button>
+          <button class="flex flex-col items-center gap-1 p-3 border border-slate-200 dark:border-slate-700 rounded-xl hover:border-primary/50 hover:bg-primary/5 transition-all">
+            <span class="material-symbols-outlined text-slate-600 dark:text-slate-300">devices</span>
+            <span class="text-xs font-medium">Electronics</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div class="fixed bottom-0 left-0 right-0 max-w-[430px] mx-auto p-4 bg-white/95 dark:bg-background-dark/95 backdrop-blur-md border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2">
+    <p class="text-[10px] text-center text-slate-500 dark:text-slate-400 mb-1">Markaad riixdo 'Daabac', waxaad ogolaatay Shuruudaha iyo Adeegga SAHAL.</p>
+    <button (click)="submitListing(descriptionTextarea, priceInput, locationSelect)" class="flex w-full h-14 items-center justify-center rounded-xl bg-navy-custom text-white text-lg font-bold tracking-tight shadow-lg shadow-navy-custom/30 hover:brightness-110 active:scale-[0.98] transition-all">
+      Daabac
+    </button>
+  </div>
+</div>

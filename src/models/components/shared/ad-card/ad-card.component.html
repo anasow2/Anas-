@@ -1,0 +1,19 @@
+
+@if(ad()){
+<div [routerLink]="['/product', ad()!.id]" class="bg-white dark:bg-sahal-blue rounded-xl overflow-hidden shadow-sm border border-slate-200 dark:border-white/10 cursor-pointer">
+  <div class="aspect-square relative">
+    <div class="absolute inset-0 bg-cover bg-center" [style.background-image]="'url(' + ad()!.imageUrl + ')'"></div>
+    <button class="absolute top-2 right-2 w-8 h-8 bg-black/30 backdrop-blur-sm rounded-full text-white flex items-center justify-center">
+      <span class="material-symbols-outlined text-lg" [style.font-variation-settings]="ad()!.isFavorite ? '\'FILL\' 1' : '\'FILL\' 0'">favorite</span>
+    </button>
+  </div>
+  <div class="p-3">
+    <p class="text-primary font-bold text-base">{{ ad()!.price | currency:'USD':'symbol':'1.0-0' }}</p>
+    <h3 class="text-sm font-medium text-slate-800 dark:text-gray-200 truncate mt-1">{{ ad()!.title }}</h3>
+    <div class="flex items-center gap-1 mt-2 text-slate-500 dark:text-gray-400">
+      <span class="material-symbols-outlined text-sm">location_on</span>
+      <span class="text-[10px] font-medium uppercase tracking-wider">{{ ad()!.location }}</span>
+    </div>
+  </div>
+</div>
+}

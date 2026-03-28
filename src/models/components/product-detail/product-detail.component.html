@@ -1,0 +1,127 @@
+
+
+@if (ad()) {
+<div class="relative min-h-screen pb-24 md:pt-20">
+  <!-- Top Navigation Overlay -->
+  <div class="fixed top-0 left-0 right-0 max-w-7xl mx-auto z-50 flex items-center justify-between p-4 pointer-events-none">
+    <a routerLink="/home" class="pointer-events-auto flex items-center justify-center size-10 rounded-full bg-white/80 dark:bg-black/40 backdrop-blur-md shadow-sm">
+      <span class="material-symbols-outlined text-slate-900 dark:text-white">arrow_back_ios_new</span>
+    </a>
+    <button class="pointer-events-auto flex items-center justify-center size-10 rounded-full bg-white/80 dark:bg-black/40 backdrop-blur-md shadow-sm">
+      <span class="material-symbols-outlined text-slate-900 dark:text-white">share</span>
+    </button>
+  </div>
+
+  <div class="md:grid md:grid-cols-2 md:gap-8 md:px-8 md:max-w-6xl md:mx-auto">
+    <!-- Product Image Section -->
+    <div class="relative w-full aspect-[4/3] bg-gray-200 overflow-hidden md:rounded-2xl md:aspect-square">
+      <img [src]="ad()!.imageUrl" [alt]="ad()!.title" class="w-full h-full object-cover" />
+      <!-- Pagination Dots -->
+      <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 px-3 py-1.5 rounded-full bg-black/20 backdrop-blur-sm">
+        <div class="size-2 rounded-full bg-white"></div>
+        <div class="size-2 rounded-full bg-white/40"></div>
+        <div class="size-2 rounded-full bg-white/40"></div>
+        <div class="size-2 rounded-full bg-white/40"></div>
+      </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="px-5 pt-6 space-y-6 md:pt-0">
+      <!-- Header Info -->
+    <div class="space-y-2">
+      <h1 class="text-2xl font-bold leading-tight tracking-tight text-navy-custom dark:text-white">{{ ad()!.title }}</h1>
+      <div class="flex items-baseline justify-between">
+        <span class="text-3xl font-bold text-primary">{{ ad()!.price | currency:'USD':'symbol':'1.0-0' }}</span>
+        <span class="text-xs font-medium px-2 py-1 bg-primary/10 text-primary dark:text-primary rounded-lg uppercase tracking-wider">La isticmaalay</span>
+      </div>
+      <div class="flex items-center gap-1.5 text-slate-500 dark:text-gray-400">
+        <span class="material-symbols-outlined text-primary text-[20px]">location_on</span>
+        <span class="text-sm font-medium">{{ ad()!.location }}</span>
+      </div>
+    </div>
+    <div class="h-px bg-slate-200 dark:bg-gray-800"></div>
+
+    <!-- Description Section -->
+    <div class="space-y-3">
+      <h3 class="text-lg font-bold text-navy-custom dark:text-white">Sharaxaad</h3>
+      <p class="text-base leading-relaxed text-slate-600 dark:text-gray-300">
+        Waa {{ ad()!.title }} oo ah 256GB. Xaaladiisu aad bay u wanaagsan tahay (95% Battery Health). Waxa uu la socdaa xadhigii asalka ahaa iyo kabaarkiisa. Ma jirto wax cilad ah oo uu leeyahay. Qiimaha waa la kala qaadan karaa haddii aad dhab u iibsanayso.
+      </p>
+    </div>
+    <div class="h-px bg-slate-200 dark:bg-gray-800"></div>
+
+    <!-- Seller Profile Card -->
+    <div class="flex items-center justify-between p-4 rounded-xl bg-slate-50 dark:bg-sahal-blue border border-slate-200 dark:border-gray-800 shadow-sm">
+      <div class="flex items-center gap-3">
+        <div class="size-12 rounded-full bg-primary/20 flex items-center justify-center overflow-hidden border-2 border-primary/10">
+          <img alt="Ahmed Ali" class="w-full h-full object-cover" src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">
+        </div>
+        <div>
+          <h4 class="font-bold text-base text-slate-800 dark:text-gray-200">Ahmed Ali</h4>
+          <div class="flex items-center gap-1">
+            <div class="flex text-primary">
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1">star</span>
+            </div>
+            <span class="text-xs text-slate-500 font-medium">(48 reviews)</span>
+          </div>
+        </div>
+      </div>
+      <a routerLink="/profile" class="text-primary font-bold text-sm">Eeg Profile</a>
+    </div>
+  </div>
+  </div>
+
+  <!-- Sticky Bottom Action Bar -->
+  <div class="fixed bottom-0 left-0 right-0 max-w-7xl mx-auto bg-white/80 dark:bg-background-dark/80 backdrop-blur-xl border-t border-slate-200 dark:border-gray-800 p-4 pb-8 z-40 md:px-12">
+    <div class="flex gap-3 md:max-w-sm md:ml-auto">
+      <button [routerLink]="['/chat']" class="flex-1 flex items-center justify-center gap-2 h-14 bg-white dark:bg-surface-dark border-2 border-primary rounded-xl text-primary font-bold text-lg">
+        <span class="material-symbols-outlined">chat_bubble</span>
+        Farriin
+      </button>
+      <button (click)="openOfferModal()" class="flex-1 flex items-center justify-center gap-2 h-14 bg-primary rounded-xl text-white font-bold text-lg shadow-lg shadow-primary/20">
+        <span class="material-symbols-outlined">sell</span>
+        Soo jeedi Qiimo
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Offer Modal -->
+@if (isOfferModalVisible()) {
+  <div class="fixed inset-0 z-50 flex items-end bg-black/60 backdrop-blur-sm" (click)="closeOfferModal()">
+    <div class="w-full max-w-md mx-auto bg-white dark:bg-sahal-blue rounded-t-3xl p-6 pt-4 shadow-2xl transition-transform duration-300" (click)="$event.stopPropagation()">
+      <div class="flex flex-col items-center">
+        <div class="w-12 h-1.5 bg-slate-300 dark:bg-gray-700 rounded-full mb-4"></div>
+        <h2 class="text-xl font-bold text-navy-custom dark:text-white">Soo jeedi Qiimahaaga</h2>
+        <p class="text-slate-500 dark:text-gray-400 mt-1">Shayga waxaa lagu xayeysiiyay <span class="font-bold text-primary">{{ ad()?.price | currency:'USD':'symbol':'1.0-0' }}</span></p>
+
+        <div class="relative w-full mt-6">
+           <span class="absolute left-6 top-1/2 -translate-y-1/2 text-primary font-bold text-2xl">$</span>
+           <input #offerInput type="number" placeholder="0" class="w-full h-20 text-center text-4xl font-bold bg-slate-100 dark:bg-gray-800 text-slate-900 dark:text-white rounded-2xl border-2 border-transparent focus:border-primary focus:ring-0 appearance-none">
+        </div>
+
+        <button (click)="submitOffer(offerInput)" class="w-full h-14 mt-6 bg-primary text-white rounded-xl font-bold text-lg flex items-center justify-center gap-2 active:scale-[0.98] transition-transform">
+          Dir Soo jeedinta
+        </button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- Offer Sent Confirmation Toast -->
+@if (showOfferConfirmation()) {
+  <div class="fixed bottom-28 left-1/2 -translate-x-1/2 max-w-sm w-11/12 p-4 z-50 transition-all duration-300">
+    <div class="flex items-center gap-3 bg-slate-900 text-white rounded-xl shadow-lg p-4">
+      <span class="material-symbols-outlined text-primary">check_circle</span>
+      <p class="font-semibold text-sm">Soo jeedintaada waa la diray!</p>
+    </div>
+  </div>
+}
+
+} @else {
+  <p class="p-8 text-center text-gray-500">Loading ad details...</p>
+}
