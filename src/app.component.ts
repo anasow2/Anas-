@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -12,4 +12,12 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+  ngOnInit() {
+    console.log('✅ AppComponent initialized');
+    const loadingScreen = document.getElementById('loading');
+    if (loadingScreen) {
+      loadingScreen.style.display = 'none';
+    }
+  }
+}

@@ -1,11 +1,16 @@
-
 import { Injectable, signal } from '@angular/core';
 import { Category, Ad } from '../models/data.models';
 
+/**
+ * Data Service - Using mock data
+ */
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
+  // For now, keeping mock data as fallback
+  // In production, replace these with actual API calls
+
   readonly categories = signal<Category[]>([
     { name: 'Guryo', icon: 'home' },
     { name: 'Gaadiid', icon: 'directions_car' },
@@ -80,7 +85,7 @@ export class DataService {
 
   constructor() {}
 
-  getAdById(id: number) {
+  getAdById(id: number): Ad | undefined {
     const allAds = [...this.ads(), ...this.userAds()];
     return allAds.find(ad => ad.id === id);
   }

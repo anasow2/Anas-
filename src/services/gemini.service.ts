@@ -5,16 +5,29 @@ import { GoogleGenAI, Chat, Type } from '@google/genai';
   providedIn: 'root',
 })
 export class GeminiService {
-  private ai: GoogleGenAI;
-  private chat!: Chat;
+  private ai: GoogleGenAI | null = null;
+  private chat: Chat | null = null;
+  private isInitialized = false;
 
   constructor() {
-    // IMPORTANT: Make sure to set the GEMINI_API_KEY environment variable.
-    this.ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
-    this.initializeChat();
+    // Initialize only if GEMINI_API_KEY is available
+    if (typeof GEMINI_API_KEY !== 'undefined' && GEMINI_API_KEY) {
+      try {
+        this.ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+        this.initializeChat();
+        this.isInitialized = true;
+        console.log('✅ Gemini Service initialized');
+      } catch (error) {
+        console.warn('⚠️ Failed to initialize Gemini Service:', error);
+      }
+    } else {
+      console.warn('⚠️ GEMINI_API_KEY not set. Gemini features will be disabled.');
+    }
   }
 
   private initializeChat() {
+    if (!this.ai) return;
+    
     const systemInstruction = `You are Sahal, a friendly and helpful assistant for the Sahal Marketplace. You can help users find items, answer questions about listings, and provide negotiation tips. Speak in a helpful and encouraging tone. You can communicate in both English and Somali.`;
     
     this.chat = this.ai.chats.create({
@@ -26,6 +39,10 @@ export class GeminiService {
   }
 
   async *sendMessageStream(message: string): AsyncGenerator<string> {
+    if (!this.chat) {
+      yield 'Sorry, Gemini service is not initialized. Please set your GEMINI_API_KEY.';
+      return;
+    }
     const result = await this.chat.sendMessageStream({ message });
     for await (const chunk of result) {
       yield chunk.text;
@@ -33,6 +50,13 @@ export class GeminiService {
   }
 
   async generateListingDetails(base64DataUrl: string, keywords: string, tone: string = 'friendly'): Promise<{ title: string; description: string }> {
+    if (!this.ai) {
+      return {
+        title: 'Error: Gemini service not initialized',
+        description: 'Please set your GEMINI_API_KEY to use AI features.'
+      };
+    }
+    
     const parts = base64DataUrl.split(',');
     const mimeTypePart = parts[0].match(/:(.*?);/);
     if (!mimeTypePart || !parts[1]) {
