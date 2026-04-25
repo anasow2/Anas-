@@ -12,6 +12,7 @@ export interface Ad {
   imageUrl: string;
   isFavorite: boolean;
   status?: 'Furan' | 'Iibsamay';
+  category?: string;
 }
 
 export interface ChatMessage {

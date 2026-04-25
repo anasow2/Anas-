@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { DataService } from '../../../services/data.service';
 // Fix: Corrected path for Ad model
 import { Ad } from '../../data.models';
+import { ThemeService } from '../../../services/theme.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,5 +16,6 @@ import { Ad } from '../../data.models';
 })
 export class ProfileComponent {
   dataService = inject(DataService);
+  themeService = inject(ThemeService);
   userAds = this.dataService.userAds;
 }

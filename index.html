@@ -79,16 +79,6 @@
 <link rel="stylesheet" href="/index.css">
 </head>
 <body class="bg-background-light dark:bg-background-dark">
-  <script>
-    console.log('📄 HTML body loaded');
-    window.APP_DEBUG = true;
-  </script>
-  <div id="loading" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: white; z-index: 9999;">
-    <div style="text-align: center; font-family: Arial, sans-serif;">
-      <h1>🔄 Loading Sahal Marketplace...</h1>
-      <p>Please wait...</p>
-    </div>
-  </div>
   <app-root></app-root>
 
   <script>
@@ -103,16 +93,6 @@
           });
       });
     }
-    
-    // Safety: Hide loading screen after 10 seconds if app hasn't loaded
-    setTimeout(() => {
-      const loading = document.getElementById('loading');
-      if (loading && loading.style.display !== 'none') {
-        console.warn('⚠️ App bootstrap timeout - hiding loading screen');
-        loading.style.display = 'none';
-      }
-    }, 10000);
   </script>
-  <script src="main.js" type="module"></script>
 </body>
 </html>

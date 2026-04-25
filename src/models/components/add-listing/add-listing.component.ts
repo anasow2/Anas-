@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { GeminiService } from '../../../services/gemini.service';
+import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-add-listing',
@@ -13,8 +14,10 @@ import { GeminiService } from '../../../services/gemini.service';
 })
 export class AddListingComponent {
   private geminiService = inject(GeminiService);
+  private dataService = inject(DataService);
   private fb = inject(FormBuilder);
 
+  categories = this.dataService.categories;
   uploadedImages = signal<string[]>([]);
   isGenerating = signal(false);
   selectedTone = signal('friendly');
@@ -25,6 +28,7 @@ export class AddListingComponent {
     description: ['', Validators.required],
     price: ['', [Validators.required, Validators.min(0)]],
     location: ['', Validators.required],
+    category: ['', Validators.required],
   });
 
   tones = [
@@ -37,6 +41,10 @@ export class AddListingComponent {
 
   setTone(toneId: string): void {
     this.selectedTone.set(toneId);
+  }
+
+  setCategory(categoryName: string): void {
+    this.listingForm.patchValue({ category: categoryName });
   }
 
   onFileSelected(event: Event): void {

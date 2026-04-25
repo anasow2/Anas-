@@ -1,5 +1,6 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +13,6 @@ import { RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
 })
-export class AppComponent implements OnInit {
-  ngOnInit() {
-    console.log('✅ AppComponent initialized');
-    const loadingScreen = document.getElementById('loading');
-    if (loadingScreen) {
-      loadingScreen.style.display = 'none';
-    }
-  }
+export class AppComponent {
+  private themeService = inject(ThemeService);
 }

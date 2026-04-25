@@ -1,16 +1,11 @@
+
 import { Injectable, signal } from '@angular/core';
 import { Category, Ad } from '../models/data.models';
 
-/**
- * Data Service - Using mock data
- */
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
-  // For now, keeping mock data as fallback
-  // In production, replace these with actual API calls
-
   readonly categories = signal<Category[]>([
     { name: 'Guryo', icon: 'home' },
     { name: 'Gaadiid', icon: 'directions_car' },
@@ -27,6 +22,7 @@ export class DataService {
       location: 'Mogadishu, Banadir',
       imageUrl: 'https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       isFavorite: false,
+      category: 'Guryo',
     },
     {
       id: 2,
@@ -35,6 +31,7 @@ export class DataService {
       location: 'Hargeisa, Somaliland',
       imageUrl: 'https://images.pexels.com/photos/3764984/pexels-photo-3764984.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       isFavorite: true,
+      category: 'Gaadiid',
     },
     {
       id: 7,
@@ -43,6 +40,7 @@ export class DataService {
       location: 'Mogadishu, Banadir',
       imageUrl: 'https://images.pexels.com/photos/303383/pexels-photo-303383.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       isFavorite: false,
+      category: 'Elektaroonig',
     },
     {
       id: 8,
@@ -51,6 +49,7 @@ export class DataService {
       location: 'Hargeisa, Somaliland',
       imageUrl: 'https://images.pexels.com/photos/276583/pexels-photo-276583.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       isFavorite: true,
+      category: 'Guryo',
     },
     {
       id: 9,
@@ -59,6 +58,7 @@ export class DataService {
       location: 'Mogadishu, Banadir',
       imageUrl: 'https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       isFavorite: false,
+      category: 'Gaadiid',
     }
   ]);
   
@@ -70,7 +70,8 @@ export class DataService {
       location: 'Mogadishu',
       imageUrl: 'https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       isFavorite: false,
-      status: 'Furan'
+      status: 'Furan',
+      category: 'Gaadiid',
     },
     {
       id: 6,
@@ -79,13 +80,14 @@ export class DataService {
       location: 'Mogadishu',
       imageUrl: 'https://images.pexels.com/photos/209296/pexels-photo-209296.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
       isFavorite: false,
-      status: 'Iibsamay'
+      status: 'Iibsamay',
+      category: 'Guryo',
     }
   ]);
 
   constructor() {}
 
-  getAdById(id: number): Ad | undefined {
+  getAdById(id: number) {
     const allAds = [...this.ads(), ...this.userAds()];
     return allAds.find(ad => ad.id === id);
   }

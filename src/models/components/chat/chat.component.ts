@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, signal, inject, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { MockChatService } from '../../../services/mock-chat.service';
+import { GeminiService } from '../../../services/gemini.service';
 import { ChatMessage } from '../../data.models';
 
 @Component({
@@ -14,7 +14,7 @@ import { ChatMessage } from '../../data.models';
 export class ChatComponent implements OnInit {
   @ViewChild('chatContainer') private chatContainer!: ElementRef;
 
-  private chatService = inject(MockChatService);
+  private geminiService = inject(GeminiService);
   
   messages = signal<ChatMessage[]>([]);
   isLoading = signal(false);
@@ -43,7 +43,7 @@ export class ChatComponent implements OnInit {
     this.scrollToBottom();
 
     try {
-      const stream = this.chatService.sendMessageStream(messageText);
+      const stream = this.geminiService.sendMessageStream(messageText);
       for await (const chunk of stream) {
         // Fix: Update signal immutably without mutating objects in the array.
         this.messages.update(current => {

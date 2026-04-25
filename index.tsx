@@ -3,29 +3,14 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter, withHashLocation } from '@angular/router';
 import { provideZonelessChangeDetection } from '@angular/core';
-import { provideHttpClient } from '@angular/common/http';
 import { AppComponent } from './src/app.component';
 import { APP_ROUTES } from './src/app.routes';
-
-console.log('🚀 Starting Sahal Marketplace...');
 
 bootstrapApplication(AppComponent, {
   providers: [
     provideZonelessChangeDetection(),
     provideRouter(APP_ROUTES, withHashLocation()),
-    provideHttpClient(),
   ],
-})
-  .then(() => {
-    console.log('✅ Sahal Marketplace loaded successfully!');
-    // Hide loading screen programmatically
-    const loading = document.getElementById('loading');
-    if (loading) {
-      loading.style.display = 'none';
-    }
-  })
-  .catch((err) => {
-    console.error('❌ App initialization failed:', err);
-  });
+}).catch((err) => console.error(err));
 
 // AI Studio always uses an `index.tsx` file for all project types.

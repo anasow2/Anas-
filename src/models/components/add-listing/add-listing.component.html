@@ -164,21 +164,29 @@
     </div>
     <div class="px-4 mt-6">
       <div class="flex flex-col gap-2">
-        <p class="text-navy-custom dark:text-white text-base font-semibold leading-normal">Qaybta Xayeysiiska</p>
+        <p class="text-navy-custom dark:text-white text-base font-semibold leading-normal" [ngClass]="{'text-red-500': isSubmitted() && listingForm.controls.category.invalid}">
+          Qaybta Xayeysiiska
+        </p>
         <div class="grid grid-cols-3 gap-2">
-          <button type="button" class="flex flex-col items-center gap-1 p-3 border border-slate-300 dark:border-slate-700 rounded-xl hover:border-primary/50 hover:bg-primary/5 transition-all">
-            <span class="material-symbols-outlined text-slate-600 dark:text-slate-300">home</span>
-            <span class="text-xs font-medium">Guryaha</span>
-          </button>
-          <button type="button" class="flex flex-col items-center gap-1 p-3 border border-primary bg-primary/10 rounded-xl">
-            <span class="material-symbols-outlined text-primary">directions_car</span>
-            <span class="text-xs font-bold text-primary">Gawaarida</span>
-          </button>
-          <button type="button" class="flex flex-col items-center gap-1 p-3 border border-slate-300 dark:border-slate-700 rounded-xl hover:border-primary/50 hover:bg-primary/5 transition-all">
-            <span class="material-symbols-outlined text-slate-600 dark:text-slate-300">devices</span>
-            <span class="text-xs font-medium">Electronics</span>
-          </button>
+          @for (category of categories(); track category.name) {
+            <button type="button" 
+              (click)="setCategory(category.name)"
+              [class]="listingForm.controls.category.value === category.name ? 'border-primary bg-primary/10' : 'border-slate-300 dark:border-slate-700 hover:border-primary/50 hover:bg-primary/5'"
+              class="flex flex-col items-center gap-1 p-3 border rounded-xl transition-all">
+              <span class="material-symbols-outlined" 
+                [ngClass]="listingForm.controls.category.value === category.name ? 'text-primary' : 'text-slate-600 dark:text-slate-300'">
+                {{ category.icon }}
+              </span>
+              <span class="text-xs" 
+                [ngClass]="listingForm.controls.category.value === category.name ? 'font-bold text-primary' : 'font-medium'">
+                {{ category.name }}
+              </span>
+            </button>
+          }
         </div>
+        @if (isSubmitted() && listingForm.controls.category.errors?.['required']) {
+          <span class="text-red-500 text-xs mt-1 ml-1">Fadlan dooro qaybta xayeysiiska.</span>
+        }
       </div>
     </div>
   </main>
