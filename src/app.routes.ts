@@ -10,7 +10,7 @@ import { SignupComponent } from './models/components/auth/signup/signup.componen
 import { NotificationsComponent } from './models/components/notifications/notifications.component';
 
 export const APP_ROUTES: Routes = [
-  { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'welcome', component: WelcomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
